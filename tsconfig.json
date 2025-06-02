@@ -25,8 +25,8 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
-    "outDir": "./build",
-    "rootDir": "./src",
+    "outDir": "build",
+    "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -35,7 +35,7 @@
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "include": [
-    "src",
+   "include": ["**/*.ts"],
     "global.d.ts"
   ],
   "exclude": ["node_modules"]
