@@ -1,0 +1,16 @@
+services:
+  - name: property-backend
+    ports:
+      - port: 3000
+        http: true
+    env:
+      - name: DB_HOST
+        secret: true
+      - name: DB_USER
+        secret: true
+      - name: DB_PASSWORD
+        secret: true
+      - name: DB_NAME
+        secret: true
+      - name: JWT_SECRET
+        secret: true
