@@ -1,5 +1,5 @@
 // // src/routes/property.routes.ts
-import { Router } from "express";
+import { Router } from "express-serve-static-core";
 import { authenticate } from "../middleware/auth.middleware";
 import { createProperty, getProperties, getPropertyById, getMyProperties, updatePropertyAmenities, getAmenities } from "../controllers/property.controller";
 
