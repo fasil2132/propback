@@ -1,10 +1,10 @@
 
 // import { Router } from "express";
-import { Router} from 'express-serve-static-core';
+import { express} from 'express';
 import { authenticate, authorizeRoles } from "../middleware/auth.middleware";
 import { getAdminProperties, updateProperty, deleteProperty, createProperty } from "../controllers/property.controller";
 
-const router = Router();
+const router = express.Router();
 
 router.get('/', authenticate, authorizeRoles(['admin']), getAdminProperties);
 router.post("/", authenticate, authorizeRoles(['admin']), createProperty);
