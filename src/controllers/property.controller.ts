@@ -1,5 +1,6 @@
 // import { Lease } from './../../../property-management-frontend/src/models/types';
-import { Request, Response, NextFunction } from "express";
+// import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express-serve-static-core';
 import ApiError from "../utils/apiError";
 import pool from "../config/database";
 import { RowDataPacket } from "mysql2";
