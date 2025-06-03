@@ -1,6 +1,6 @@
 
 // import { Router } from "express";
-import { express} from 'express';
+import express from 'express';
 import { authenticate, authorizeRoles } from "../middleware/auth.middleware";
 import { getAdminProperties, updateProperty, deleteProperty, createProperty } from "../controllers/property.controller";
 
