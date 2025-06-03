@@ -1,9 +1,9 @@
 // // src/routes/property.routes.ts
-import { Router } from "express-serve-static-core";
+import { express } from "express";
 import { authenticate } from "../middleware/auth.middleware";
 import { createProperty, getProperties, getPropertyById, getMyProperties, updatePropertyAmenities, getAmenities } from "../controllers/property.controller";
 
-const router = Router();
+const router = express.Router();
 
 router.get("/", getProperties);
 router.get("/me", authenticate, getMyProperties); // Apply middleware here
