@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router } from 'express-serve-static-core';
 import { getOwnerDashboard, getAllOwners } from '../controllers/owner.controller';
 import { authenticate } from '../middleware/auth.middleware';
 
