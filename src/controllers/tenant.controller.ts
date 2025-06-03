@@ -1,4 +1,5 @@
-import { Request, Response } from "express";
+// import { Request, Response } from "express";
+import { Request, Response} from 'express-serve-static-core';
 import pool from "../config/database";
 import { RowDataPacket } from "mysql2";
 import { User } from "../types/user";
