@@ -1,5 +1,5 @@
 
-import { express } from "express";
+import express from "express";
 import { authenticate, authorizeRoles } from "../middleware/auth.middleware";
 import { getTenants, getOwners, updateUser, getUsers, deleteUser, createUser } from "../controllers/property.controller";
 
