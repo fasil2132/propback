@@ -1,9 +1,9 @@
 
-import { Router } from "express-serve-static-core";
+import { express } from "express";
 import { authenticate } from "../middleware/auth.middleware";
 import { getMaintenanceRequests, createMaintenanceRequest, updateRequestStatus } from "../controllers/property.controller";
 
-const router = Router();
+const router = express.Router();
 
 // Maintenance Requests
 router.get('/', getMaintenanceRequests);
