@@ -1,4 +1,4 @@
-import { express } from 'express';
+import express from 'express';
 import { getLeaseById } from '../controllers/lease.controller';
 import { authenticate } from '../middleware/auth.middleware';
 
