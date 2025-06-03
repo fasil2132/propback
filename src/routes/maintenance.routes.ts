@@ -1,5 +1,5 @@
 
-import { Router } from "express";
+import { Router } from "express-serve-static-core";
 import { authenticate } from "../middleware/auth.middleware";
 import { getMaintenanceRequests, createMaintenanceRequest, updateRequestStatus } from "../controllers/property.controller";
 
