@@ -2,14 +2,14 @@ FROM node:20 AS builder
 
 WORKDIR /usr/src/app
 
-# Copy package files first
+# Copy ONLY package files first for better caching
 COPY package*.json ./
-COPY tsconfig.json ./
 
-# Install ALL dependencies (including devDependencies)
+# Install dependencies (including devDependencies)
 RUN npm ci
 
-# Copy all source files
+# Copy other files (tsconfig, source code)
+COPY tsconfig.json ./
 COPY . .
 
 # Build TypeScript
