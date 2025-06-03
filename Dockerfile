@@ -1,24 +1,31 @@
-FROM node:20
+FROM node:20 AS builder
 
 WORKDIR /usr/src/app
 
-# Copy package files and configs
+# Copy package files first
 COPY package*.json ./
 COPY tsconfig.json ./
 
-# Install ONLY production dependencies
-RUN npm ci --only=production
+# Install ALL dependencies (including devDependencies)
+RUN npm ci
 
 # Copy all source files
 COPY . .
 
-# Build TypeScript to /usr/src/app/build
+# Build TypeScript
 RUN npm run build
 
-# Verify build output (debugging)
-RUN ls -la build/
+# --- Production Stage ---
+FROM node:20-slim
+
+WORKDIR /usr/src/app
+
+# Copy production dependencies
+COPY --from=builder /usr/src/app/package*.json ./
+RUN npm ci --only=production
+
+# Copy built files
+COPY --from=builder /usr/src/app/build ./build
 
 EXPOSE 3000
-
-# Run from the built output
 CMD ["node", "build/index.js"]
