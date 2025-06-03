@@ -5,7 +5,7 @@
   "main": "build/index.js",
   "scripts": {
     "dev": "nodemon --exec ts-node index.ts",
-    "build": "tsc && cp -r prisma build/",
+    "build": "tsc",
     "start": "node build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
