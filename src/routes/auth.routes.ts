@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router } from 'express-serve-static-core';
 import { login, register, validateToken } from '../controllers/auth.controller';
 // import { validate } from 'express-validation';
 // You might want to add validation middleware here
