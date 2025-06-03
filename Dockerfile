@@ -1,6 +1,6 @@
 FROM node:20
 
-WORKDIR /usr/src/app
+WORKDIR /src/app
 
 # Copy package files first for better caching
 COPY package*.json ./
@@ -21,4 +21,4 @@ RUN ls -la build/
 EXPOSE 3000
 
 # Use absolute path to entry point
-CMD ["node", "/usr/src/app/build/index.js"]
+CMD ["node", "/src/app/build/index.js"]
