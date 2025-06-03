@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 // Load environment variables
 dotenv.config();
 import express from "express";
+import type { Application } from 'express'; // Add type import if needed
 import cors from "cors";
 import morgan from "morgan";
 import pool from "./src/config/database";
@@ -29,7 +30,7 @@ import { getAmenities } from "./src/controllers/property.controller";
 // });
 
 // Create Express app
-const app = express();
+const app: Application = express();
 
 // Configure middleware
 app.use(cors());
