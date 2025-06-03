@@ -1,4 +1,4 @@
-import { express } from 'express';
+import express from 'express';
 import { getOwnerDashboard, getAllOwners } from '../controllers/owner.controller';
 import { authenticate } from '../middleware/auth.middleware';
 
