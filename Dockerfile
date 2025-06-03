@@ -1,6 +1,6 @@
 FROM node:20
 
-WORKDIR /usr/src/app
+WORKDIR /src/app
 
 # Copy package files and configs
 COPY package*.json ./
