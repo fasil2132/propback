@@ -1,4 +1,4 @@
-import { express } from "express";
+import express from "express";
 import { getDashboardData, getMyProperties } from "../controllers/property.controller";
 import { authenticate } from "../middleware/auth.middleware";
 
