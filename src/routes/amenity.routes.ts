@@ -1,4 +1,4 @@
-import express from "express";
+import express from "express-serve-static-core";
 import { getAmenities } from "../controllers/property.controller";
 
 const router = express.Router();
