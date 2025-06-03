@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction } from "express";
+// import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express-serve-static-core';
 import ApiError from "../utils/apiError";
 
 import { User } from "../types/user";
