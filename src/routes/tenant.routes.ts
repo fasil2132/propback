@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router } from 'express-serve-static-core';
 import { 
   getTenantLeases, 
   getTenantPayments, 
