@@ -1,8 +1,8 @@
-import { Router } from 'express-serve-static-core';
+import { express } from 'express';
 import { getLeaseById } from '../controllers/lease.controller';
 import { authenticate } from '../middleware/auth.middleware';
 
-const router = Router();
+const router = express.Router();
 
 router.get('/:leaseId', authenticate, getLeaseById);
 
