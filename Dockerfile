@@ -20,6 +20,9 @@ FROM node:20-slim
 
 WORKDIR /usr/src/app
 
+# Create data directory for SQLite
+RUN mkdir -p /data
+
 # Copy production dependencies
 COPY --from=builder /usr/src/app/package*.json ./
 RUN npm ci --only=production

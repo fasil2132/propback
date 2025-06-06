@@ -1,0 +1,9 @@
+[
+    { "username": "admin", "passwordHash": "$2a$12$DGS4T2iPCjCQgCF7S32ODOubXrcCWXIJK7Nq3naT8eGqcigylTRjK", "email": "adminone@gmail.com", "role": "admin" },
+    { "username": "owner1", "passwordHash": "$2a$12$DGS4T2iPCjCQgCF7S32ODOubXrcCWXIJK7Nq3naT8eGqcigylTRjK", "email": "ownerone@gmail.com", "role": "owner" },
+    { "username": "owner2", "passwordHash": "$2a$12$DGS4T2iPCjCQgCF7S32ODOubXrcCWXIJK7Nq3naT8eGqcigylTRjK", "email": "ownertwo@gmail.com", "role": "owner" },
+    { "username": "owner3", "passwordHash": "$2a$12$DGS4T2iPCjCQgCF7S32ODOubXrcCWXIJK7Nq3naT8eGqcigylTRjK", "email": "ownerthree@gmail.com", "role": "owner" },
+    { "username": "tenant1", "passwordHash": "$2a$12$DGS4T2iPCjCQgCF7S32ODOubXrcCWXIJK7Nq3naT8eGqcigylTRjK", "email": "tenantone@gmail.com", "role": "tenant" },
+    { "username": "tenant2", "passwordHash": "$2a$12$DGS4T2iPCjCQgCF7S32ODOubXrcCWXIJK7Nq3naT8eGqcigylTRjK", "email": "tenanttwo@gmail.com", "role": "tenant" },
+    { "username": "tenant3", "passwordHash": "$2a$12$DGS4T2iPCjCQgCF7S32ODOubXrcCWXIJK7Nq3naT8eGqcigylTRjK", "email": "tenantthree@gmail.com", "role": "tenant" }
+]

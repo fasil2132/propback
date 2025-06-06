@@ -1,10 +1,12 @@
 // import { Request, Response, NextFunction } from "express";
-import { Request, Response, NextFunction } from 'express-serve-static-core';
+import { Request, Response, NextFunction } from "express-serve-static-core";
 import ApiError from "../utils/apiError";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import pool from "../config/database";
+// import pool from "../config/database";
+import db from "../config/database";
 import { RowDataPacket } from "mysql2";
+import { User } from "../types/user";
 
 export const login = async (
   req: Request,
@@ -15,13 +17,17 @@ export const login = async (
     const { email, password } = req.body;
 
     // 1. Check if user exists
-    const [users] = await pool.execute("SELECT * FROM users WHERE email = ?", [
-      email,
-    ]);
+    // const [users] = await pool.execute("SELECT * FROM users WHERE email = ?", [
+    //   email,
+    // ]);
+
+    const getStmt = db.prepare("SELECT * FROM users WHERE email = ?");
+    const user = getStmt.get(email) as User;
+    console.log("User: ", user);
     // console.log(users);
-    const user = (users as any[])[0];
+    // const user = (users as any[])[0];
     if (!user) {
-      throw new ApiError(401, "Invalid credentials");
+      throw new ApiError(401, "Invalid  User");
     }
 
     // console.log(password);
@@ -47,7 +53,7 @@ export const login = async (
     //   expiresIn: "1h",
     // });
 
-    res.status(200).json({ "token":token, "user":user });
+    res.status(200).json({ token: token, user: user });
   } catch (err) {
     next(err);
   }
@@ -62,11 +68,16 @@ export const register = async (
     const { username, email, password } = req.body;
 
     // // 1. Check if user exists
-    const [existing] = await pool.execute(
-      "SELECT id FROM users WHERE email = ?",
-      [email]
-    );
-    if ((existing as any[]).length > 0) {
+    // const [existing] = await pool.execute(
+    //   "SELECT id FROM users WHERE email = ?",
+    //   [email]
+    // );
+    const getStmt = db.prepare("SELECT COUNT(*) FROM users WHERE email = ?");
+    const existing = getStmt.get(email) as number;
+    // if ((existing as any[]).length > 0) {
+    //   throw new ApiError(400, "User already exists");
+    // }
+    if (existing > 0) {
       throw new ApiError(400, "User already exists");
     }
     // 1. Check if user exists
@@ -82,10 +93,17 @@ export const register = async (
     const hashedPassword = await bcrypt.hash(password, 12);
 
     // 3. Create user
-    const [result] = await pool.execute(
-      "INSERT INTO users (username, email, passwordHash) VALUES (?, ?, ?)",
-      [username, email, hashedPassword]
-    );
+    // const [result] = await pool.execute(
+    //   "INSERT INTO users (username, email, passwordHash) VALUES (?, ?, ?)",
+    //   [username, email, hashedPassword]
+    // );
+
+    const stmt = db.prepare(`
+      INSERT INTO users
+      (username, email, passwordHash)
+      VALUES (?, ?, ?)
+      `);
+    const result = stmt.run(username, email, hashedPassword);
 
     res.status(201).json({ message: "User created successfully" });
   } catch (err) {
@@ -116,11 +134,13 @@ export const validateToken = async (
     const decoded = jwt.verify(token, jwtSecret) as { userId: number };
 
     // 3. Check if user still exists
-    const [users] = await pool.execute<RowDataPacket[]>(
-      "SELECT id, email FROM users WHERE id = ?",
-      [decoded.userId]
-    );
-    const user = users[0];
+    // const [users] = await pool.execute<RowDataPacket[]>(
+    //   "SELECT id, email FROM users WHERE id = ?",
+    //   [decoded.userId]
+    // );
+    const getStmt = db.prepare("SELECT id, email FROM users WHERE id = ?");
+    const user = getStmt.get(decoded.userId) as User;
+    // const user = users[0];
     if (!user) {
       throw new ApiError(401, "User not found");
     }

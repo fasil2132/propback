@@ -1,0 +1,14 @@
+[
+  {
+    "userId": 5,
+    "propertyId": 1,
+    "leaseStart": "2025-06-20",
+    "leaseEnd": "2026-06-20"
+  },
+  {
+    "userId": 6,
+    "propertyId": 6,
+    "leaseStart": "2025-01-14",
+    "leaseEnd": "2026-01-14"
+  }
+]

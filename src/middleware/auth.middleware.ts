@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import pool from "../config/database";
 import { RowDataPacket } from "mysql2";
 import { User } from "../types/user";
+import db from '../config/database';
 
 // Authorization middleware (add this to auth.middleware.ts)
 export const authorizeRoles = (roles: string[]) => {
@@ -30,20 +31,22 @@ export const authenticate = async (
     };
 
     // Explicitly type the query result
-    const [users] = await pool.execute<RowDataPacket[]>(
-      "SELECT id, username, email, role FROM users WHERE id = ?",
-      [decoded.userId]
-    );
+    // const [users] = await pool.execute<RowDataPacket[]>(
+    //   "SELECT id, username, email, role FROM users WHERE id = ?",
+    //   [decoded.userId]
+    // );
+    const stmt = db.prepare("SELECT id, username, email, role FROM users WHERE id = ?");
+    const user = stmt.get(decoded.userId);
 
     // console.log("Decoded token:", decoded);
     // console.log("Database query result:", users);
 
-    if (!Array.isArray(users) || users.length === 0) {
+    if (!user) {
       return next(new ApiError(404, "User not found"));
     }
 
     // Type assertion for the user object
-    req.user = users[0] as User;
+    req.user = user as User;
     next();
   } catch (err) {
     next(new ApiError(401, "Invalid token"));

@@ -1,0 +1,15 @@
+[
+    { "name": "furnished" },
+    { "name": "balcony" },
+    { "name": "pool" },
+    { "name": "garden" },
+    { "name": "elevator" },
+    { "name": "air conditioning" },
+    { "name": "parking" },
+    { "name": "security system" },
+    { "name": "fireplace" },
+    { "name": "washer/dryer" },
+    { "name": "dishwasher" },
+    { "name": "central heating" },
+    { "name": "smart home" }
+]
